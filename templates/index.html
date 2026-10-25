@@ -1,0 +1,88 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Observability Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <h1>Cloud Observability</h1>
+            <p>Monitoring, Logging &amp; Performance Dashboard</p>
+        </div>
+        <div class="live-status">
+            <span class="status-dot"></span>
+            System Monitoring
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats-grid">
+            <div class="stat-card">
+                <p>Total Requests</p>
+                <h2 id="total-requests">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Successful Requests</p>
+                <h2 id="successful-requests">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Failed Requests</p>
+                <h2 id="failed-requests">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Average Latency</p>
+                <h2><span id="average-latency">0</span> ms</h2>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Request Overview</h2>
+            <p class="subtitle">Successful and failed HTTP requests</p>
+            <div class="chart-container">
+                <canvas id="requestChart"></canvas>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Recent Request Logs</h2>
+            <p class="subtitle">Latest requests recorded by the system</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Timestamp</th>
+                            <th>Endpoint</th>
+                            <th>Status</th>
+                            <th>Latency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-table">
+                        <tr>
+                            <td colspan="5">Loading request logs...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <p class="footer">
+            Cloud Observability System | Auto-refresh every 5 seconds
+        </p>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
